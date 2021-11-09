@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="content-type" content="no-cache, must-revalidate" />
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
+    <title>气象大数据平台</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/comon0.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<script>
+    $(window).load(function () {
+        $(".loading").fadeOut();
+        window.addEventListener("scroll", e => {
+            if (document.documentElement.scrollTop > window.innerHeight * 0.5) {
+                e.preventDefault();
+                console.log(window.innerHeight)
+                //document.documentElement.scrollTop=window.innerHeight*0.5;
+            }
+        });
+    })
+
+    /****/
+    $(document).ready(function () {
+        var whei = $(window).width()
+        $("html").css({ fontSize: whei / 20 })
+        $(window).resize(function () {
+            var whei = $(window).width()
+            $("html").css({ fontSize: whei / 20 })
+        });
+    });
+</script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script language="JavaScript" src="js/js.js"></script>
+
+<body>
+    <div class="loading">
+        <div class="loadbox"> <img src="picture/loading.gif"> 页面加载中... </div>
+    </div>
+    <div class="head">
+        <div class="left nav">
+            <ul>
+                <li><a href="index.html">🏠</a> </li>
+                <li class="nav_active"><a href="./service.html">ℹ</a> </li>
+                <li><a href="./looking.html">⛅</a> </li>
+            </ul>
+        </div>
+        <h1>贵州历史气象分析</h1>
+        <div class="weather">
+            <span id="showTime"></span>
+        </div>
+    </div>
+    <div class="canvas" style="opacity: 1;z-index: -1">
+        <iframe frameborder="0" src="js/test.html" style="width: 100%; height: 930px"></iframe>
+    </div>
+
+    <div class="total_chose_box" style="height: 60px;">
+        <div style="height: 32px;"></div>
+        <span class="chose_tltle" style="color: white;font-size: 14px;">请选择年份：</span>
+        <select class="year_chose year_text">
+            <option>2021</option>
+            <option>2020</option>
+        </select>
+        <span class="chose_tltle" style="color: white;font-size: 14px;">请输入月份：</span>
+        <!-- <input class="chose_text_in"> -->
+        <select class="chose_text_in month_text">
+            <option>1月</option>
+            <option>2月</option>
+            <option>3月</option>
+            <option>4月</option>
+            <option>5月</option>
+            <option>6月</option>
+            <option>7月</option>
+            <option>8月</option>
+            <option>9月</option>
+            <option>10月</option>
+            <option>11月</option>
+            <option>12月</option>
+        </select>
+        <span class="chose_tltle" style="color: white;font-size: 14px;">请选择区域：</span>
+        <select class="year_chose city_text">
+            <option>贵阳</option>
+            <option>安顺</option>
+            <option>六盘水</option>
+            <option>遵义</option>
+            <option>铜仁</option>
+            <option>毕节</option>
+            <option>黔南</option>
+            <option>黔东南</option>
+            <option>黔西南</option>
+        </select>
+        <button class="chose_enter">确定</button>
+    </div>
+
+
+    <div class="mainbox">
+        <ul class="clearfix">
+            <li>
+                <div class="boxall" style="height: 4.8rem">
+                    <div class="alltitle">月温度统计图</div>
+                    <div class="allnav" id="echart1"></div>
+                    <div class="boxfoot"></div>
+
+                    <div class="light-form">
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                    </div>
+
+                </div>
+                <div class="boxall" style="height: 4.8rem">
+                    <!-- <div class="alltitle">贵州一年气温</div> -->
+                    <div class="allnav" id="echart2">
+                        <div class="alltitle">贵州月份气温</div>
+                        <ul class="title-head">
+                            <li>时间</li>
+                            <li>日期</li>
+                            <li>温度</li>
+                            <li>天气</li>
+                            <li>风级</li>
+                            <li>城市</li>
+                        </ul>
+                        <div class="wrap" id="wrap">
+                            <ul id="comment1">
+<!--                                <li>-->
+<!--                                    <span>周一</span>-->
+<!--                                    <span>7月22日</span>-->
+<!--                                    <span>24度</span>-->
+<!--                                    <span>多云转晴</span>-->
+<!--                                    <span>东风3-4级</span>-->
+<!--                                    <span>良</span>-->
+<!--                                </li>-->
+                            </ul>
+                                <ul id="comment2"></ul>
+                        </div>
+                    </div>
+                    <div class="boxfoot"></div>
+
+                    <div class="light-from">
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                    </div>
+                </div>
+
+            </li>
+            <li>
+                <div class="boxall" style="height: 4.8rem">
+                    <div class="alltitle">月度气候分布饼图</div>
+                    <div class="allnav" id="echart3"></div>
+                    <div class="boxfoot"></div>
+                    <div class="light-from">
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                    </div>
+                </div>
+                <div class="boxall" style="height: 4.8rem">
+                    <div class="alltitle">贵州月份平均气温</div>
+                    <div class="allnav" id="echart4"></div>
+                    <div class="boxfoot"></div>
+                    <div class="light-from">
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="boxall" style="height:4.8rem">
+                    <div class="alltitle">贵州一年温差情况</div>
+                    <div class="allnav" id="echart5"></div>
+                    <div class="boxfoot"></div>
+                    <div class="light-from">
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                    </div>
+                </div>
+                <div class="boxall" style="height: 4.8rem">
+                    <div class="alltitle">月温度指数</div>
+                    <div class="allnav" id="echart6"></div>
+                    <div class="boxfoot"></div>
+                    <div class="light-from">
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                        <span class="light"></span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="back"></div>
+
+
+    <script>
+        var t = null;
+        t = setTimeout(time, 1000);//開始运行
+        function time() {
+            clearTimeout(t);//清除定时器
+            dt = new Date();
+            var y = dt.getFullYear();
+            var mt = dt.getMonth() + 1;
+            var day = dt.getDate();
+            var h = dt.getHours();//获取时
+            var m = dt.getMinutes();//获取分
+            var s = dt.getSeconds();//获取秒
+            document.getElementById("showTime").innerHTML = y + "年" + mt + "月" + day + "日"  + "-" + h + "时" + m + "分" + s + "秒";
+            t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+
+    </script>
+    <script type="text/javascript">
+        window.onload = roll(40);
+
+        function roll(t) {
+            var ul1 = document.getElementById("comment1");
+            var ul2 = document.getElementById("comment2");
+            var ulbox = document.getElementById("wrap");
+            ul2.innerHTML = ul1.innerHTML;
+            ulbox.scrollTop = 0; // 开始无滚动时设为0
+            var timer = setInterval(rollStart, t); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+        }
+
+        // 开始滚动函数
+        function rollStart() {
+            // 上面声明的DOM对象为局部对象需要再次声明
+            var ul1 = document.getElementById("comment1");
+            var ul2 = document.getElementById("comment2");
+            var ulbox = document.getElementById("wrap");
+            // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+            if (ulbox.scrollTop >= ul1.scrollHeight) {
+                ulbox.scrollTop = 0;
+            } else {
+                ulbox.scrollTop++;
+            }
+        }
+    </script>
+</body>
+
+</html>

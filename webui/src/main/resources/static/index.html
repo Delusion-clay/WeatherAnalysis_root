@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>气象大数据服务</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/comon0.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/service.css">
+</head>
+<script>
+    $(window).load(function () {
+        $(".loading").fadeOut();
+        window.addEventListener("scroll", e => {
+            if (document.documentElement.scrollTop > window.innerHeight * 0.5) {
+                e.preventDefault();
+                console.log(window.innerHeight)
+                //document.documentElement.scrollTop=window.innerHeight*0.5;
+            }
+        });
+    })
+
+    /****/
+    $(document).ready(function () {
+        var whei = $(window).width()
+        $("html").css({ fontSize: whei / 20 })
+        $(window).resize(function () {
+            var whei = $(window).width()
+            $("html").css({ fontSize: whei / 20 })
+        });
+    });
+</script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script language="JavaScript" src="js/service.js"></script>
+<script language="JavaScript" src="js/guizhou.js"></script>
+
+<body>
+    <div class="loading">
+        <div class="loadbox"> <img src="picture/loading.gif"> 页面加载中... </div>
+    </div>
+    <div class="head">
+        <div class="left nav">
+            <ul>
+                <li  class="nav_active"><a href="index.html">🏠</a> </li>
+                <li><a href="./service.html">ℹ</a> </li>
+                <li><a href="./looking.html">⛅</a> </li>
+            </ul>
+        </div>
+        <h1>贵州气象预警分析</h1>
+        <div class="weather">
+            <span id="showTime"></span>
+        </div>
+
+        <script>
+            var t = null;
+            t = setTimeout(time, 1000);//開始运行
+            function time() {
+                clearTimeout(t);//清除定时器
+                dt = new Date();
+                var y = dt.getFullYear();
+                var mt = dt.getMonth() + 1;
+                var day = dt.getDate();
+                var h = dt.getHours();//获取时
+                var m = dt.getMinutes();//获取分
+                var s = dt.getSeconds();//获取秒
+                document.getElementById("showTime").innerHTML = y + "年" + mt + "月" + day + "日" + "-" + h + "时" + m + "分" + s + "秒";
+                t = setTimeout(time, 1000); //设定定时器，循环运行
+            }
+
+        </script>
+    </div>
+    <div class="canvas" style="opacity: 1;z-index: 0">
+        <iframe frameborder="0" src="js/test.html" style="width: 100%; height: 800px"></iframe>
+    </div>
+
+    <div class="mainbox">
+        <ul class="clearfix">
+            <li class="cl-1">
+                <div class="boxall" style="height: 4.5rem">
+                        <select class="alltitle sele city_text">
+                            <option>贵阳</option>
+                            <option>安顺</option>
+                            <option>六盘水</option>
+                            <option>遵义</option>
+                            <option>铜仁</option>
+                            <option>毕节</option>
+                            <option>黔南</option>
+                            <option>黔东南</option>
+                            <option>黔西南</option>
+                        </select>
+
+                    <div id="mobile" style=" padding-top:0px; padding-bottom:0px;">
+                        <div class="mright" id="mright_1">
+                            <ul>
+                                <li class="date-day date-day1">05月13日</li>
+                                <li class="date-week date-week1">星期一</li>
+                                <li class="date-img date-img1">
+                                    <img src="./weather/b6.png" alt="" class="pngtqico"></li>
+                                <li class="date-weather date-weather1">小雨转晴</li>
+                                <!-- <li class="temperature" id="temperature">18℃～26℃</li> -->
+                                <li class="date-wind date-wind1">东南风</li>
+                            </ul>
+                        </div>
+
+                        <div class="mright" id="mright_2">
+                            <ul>
+                                <li class="date-day date-day2">05月14日</li>
+                                <li class="date-week date-week2">星期二</li>
+                                <li class="date-img date-img2">
+                                    <img src="./weather/b8.png" alt="" class="pngtqico"></li>
+                                <li class="date-weather date-weather2">小雨到中雨</li>
+                                <!-- <li class="temperature" id="temperature">19℃～27℃</li> -->
+                                <li class="date-wind date-wind2">东风</li>
+                            </ul>
+                        </div>
+
+                        <div class="mright" id="mright_3">
+                            <ul>
+                                <li class="date-day date-day3">05月15日</li>
+                                <li class="date-week date-week3">星期三</li>
+                                <li class="date-img date-img3"><img src="./weather/b0.png" alt="" class="pngtqico"></li>
+                                <li class="date-weather date-weather3">晴</li>
+                                <!-- <li class="temperature" id="temperature">20℃～27℃</li> -->
+                                <li class="date-wind date-wind3">东南风</li>
+                            </ul>
+                        </div>
+
+                        <div class="mright" id="mright_4">
+                            <ul>
+                                <li class="date-day date-day4">05月16日</li>
+                                <li class="date-week date-week4">星期四</li>
+                                <li class="date-img date-img4"><img src="./weather/b9.png" alt="" class="pngtqico"></li>
+                                <li class="date-weather date-weather4">大雨</li>
+                                <!-- <li class="temperature" id="temperature">20℃～28℃</li> -->
+                                <li class="date-wind date-wind4">东风</li>
+                            </ul>
+                        </div>
+
+                        <div class="mright" id="mright_5">
+                            <ul>
+                                <li class="date-day date-day5">05月17日</li>
+                                <li class="date-week date-week5">星期五</li>
+                                <li class="date-img date-img5"><img src="./weather/b4.png" alt="" class="pngtqico"></li>
+                                <li class="date-weather date-weather5">雷阵雨</li>
+                                <!-- <li class="temperature" id="temperature">20℃～28℃</li> -->
+                                <li class="date-wind date-wind5">东北风</li>
+                            </ul>
+                        </div>
+
+                        <div class="mright" id="mright_6">
+                            <ul>
+                                <li class="date-day date-day6">05月19日</li>
+                                <li class="date-week date-week6">星期六</li>
+                                <li class="date-img date-img6"><img src="./weather/b2.png" alt="" class="pngtqico"></li>
+                                <li class="date-weather date-weather6">多云</li>
+                                <!-- <li class="temperature" id="temperature">20℃～28℃</li> -->
+                                <li class="date-wind date-wind6">东风</li>
+                            </ul>
+                        </div>
+
+                        <div class="mright" id="mright_7">
+                            <ul>
+                                <li class="date-day date-day7">05月20日</li>
+                                <li class="date-week date-week7">星期日</li>
+                                <li class="date-img date-img7"><img src="./weather/b0.png" alt="" class="pngtqico"></li>
+                                <li class="date-weather date-weather7">晴</li>
+                                <!-- <li class="temperature" id="temperature">20℃～28℃</li> -->
+                                <li class="date-wind date-wind7">东南风</li>
+                            </ul>
+                        </div>
+                        <div class="light-from">
+                            <span class="light"></span>
+                            <span class="light"></span>
+                            <span class="light"></span>
+                            <span class="light"></span>
+                        </div>
+                    </div>
+                    <!-- 温度折线图 -->
+                    <div class="temperature" id="temperature"></div>
+                    <div class="boxfoot"></div>
+                </div>
+
+                <div class="boxall" style="height: 5.55rem">
+                    <div class="alltitle">生活指数</div>
+                    <div class="life">
+                        <ul>
+                            <li class="zhishu">
+                                <div class="zi">
+                                    <img src="./images/yifu.jpg" alt="" class="yifu">
+                                    <span class="zs">穿衣指数</span>
+                                </div>
+                                <div class="jianyi1"></div>
+                            </li>
+                            <li>
+                                <div><img src="./images/jiaotong.jpg" alt=""><span>过敏指数</span></div>
+                                <div class="jianyi2"></div>
+                            </li>
+                            <li>
+                                <div><img src="./images/ganmao.jpg" alt=""><span>感冒指数</span></div>
+                                <div class="jianyi3">天气较热，建议短袖短裙体弱者建议长袖单裤</div>
+                            </li>
+                            <li>
+                                <div><img src="./images/yundong.jpg" alt=""><span>运动指数</span></div>
+                                <div class="jianyi4">天气较热，建议短袖短裙体弱者建议长袖单裤</div>
+                            </li>
+                            <li class="xiche-li">
+                                <div><img src="./images/shufu.jpg" alt=""><span>洗车指数</span></div>
+                                <div class="jianyi5">天气较热，建议短袖短裙体弱者建议长袖单裤</div>
+                            </li>
+                            <li>
+                                <div><img src="./images/fangshai.jpg" alt=""><span>紫外线指数</span></div>
+                                <div class="jianyi6">天气较热，建议短袖短裙体弱者建议长袖单裤</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="boxfoot"></div>
+                </div>
+            </li>
+
+            <li class="cl-2">
+                <div class="boxall warnling_demo" style="height: 10.35rem">
+                    <div class="alltitle">贵州省地图</div>
+                    <div class="gzmap" id="gzmap"></div>
+                    <div class="boxfoot"></div>
+                </div>
+
+                <div class="boxall warnling" style="height:4.0rem">
+<!--                    <div class="alltitle w_alltitle">预警信息</div>-->
+                    <div class="alltitle warn_alltitle">
+                        <ul class="ul_alltitle">
+                            <li>城市</li>
+                            <li>检测时间</li>
+                            <li>预警信息</li>
+                        </ul>
+                    </div>
+                    <div class="wrap warp-warn" id="wrap">
+                        <ul id="comment1">
+                            <!--                                    <li class="c-2">安顺市发布大风蓝色预警</li>-->
+                        </ul>
+                        <ul id="comment2"></ul>
+                    </div>
+<!--                    <div class="boxfoot"></div>-->
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    </div>
+
+    <div class="wrap1" id="wrap1">
+        <div id="comment3">
+            <ul class="comment3_ul">
+                <li>
+                    <span class="cityName1 cnt">城市</span>
+                    <span class="totalCount1 cnt">预警</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- <div id="comment4"></div> -->
+    </div>
+
+    <div class="back"></div>
+
+    <script type="text/javascript">
+        window.onload = roll(40);
+
+        function roll(t) {
+            var ul1 = document.getElementById("comment1");
+            var ul2 = document.getElementById("comment2");
+            var ulbox = document.getElementById("wrap");
+            ul2.innerHTML = ul1.innerHTML;
+            ulbox.scrollTop = 0; // 开始无滚动时设为0
+            var timer = setInterval(rollStart, t); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+            // 鼠标移入div时暂停滚动
+            // ulbox.onmouseover = function () {
+            //     clearInterval(timer);
+            // }
+            // // 鼠标移出div后继续滚动
+            // ulbox.onmouseout = function () {
+            //     timer = setInterval(rollStart, t);
+            // }
+
+        }
+
+        // 开始滚动函数
+        function rollStart() {
+            // 上面声明的DOM对象为局部对象需要再次声明
+            var ul1 = document.getElementById("comment1");
+            var ul2 = document.getElementById("comment2");
+            var ulbox = document.getElementById("wrap");
+            // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+
+            if (ulbox.scrollTop >= ul1.scrollHeight) {
+                ulbox.scrollTop = 0;
+            } else {
+                ulbox.scrollTop++;
+                // console.log(ulbox.scrollTop)
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

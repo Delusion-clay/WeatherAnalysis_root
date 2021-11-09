@@ -1,0 +1,278 @@
+html {
+    height: 100%;
+}
+
+.first{
+    width: 100%;
+    height: 850px;
+    overflow: hidden;
+}
+#main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#toolbar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+
+.map{  position:relative; height: 7.2rem; z-index: 1;left: 34%; top: 3%; width: 30%;}
+.map1,.map2,.map3{ position:absolute; opacity: 1}
+.map1{ 
+    width:5.03rem; 
+    z-index: 2;
+    top:.7rem; 
+    left: 8.6%;
+    animation: myfirst2 15s infinite linear;
+}
+.map2{ width:4.66rem; top:.95rem; left:.8rem; z-index: 3; opacity: 0.2; animation: myfirst 10s infinite linear;}
+.map3{ width:4.18rem; top:1.17rem; left: 1.0rem; z-index: 1;}
+
+body {
+    /* background: url(../images/bg.jpg); */
+    background-size: 100% 150%;
+    margin: 0;
+}
+
+.inner{
+    height: 700px;
+}
+
+.user_left{
+    height: 100%;
+    float: left;
+}
+
+.user_left {
+    width: 32.5%;
+    height: 99%;
+    background-color: rgba(2,8,23,0.54);
+    border-radius: 10px;
+    position: relative;
+}
+
+.l_left {
+    float: left;
+}
+
+.user_line1 {
+    border-radius: 10px;
+    border: 1px #0174f5 solid;
+    margin: 1px;
+    height: 100%;
+}
+
+.user_line2 {
+    margin: 1px;
+    border-radius: 9px;
+    border: 2px #0b7ff3 solid;
+    height: 100%;
+    padding: 24px 8px 0 8px;
+}
+
+
+
+
+.windWrap{
+    width: 3.7%;
+    height: 7.6%;
+    border: 2px solid ;
+    /* background-size: 100%; */
+    border: 2px solid yellow;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 94%;
+    left: 92%;
+}
+.windFan{
+    width: 100%;
+    margin: 1%;
+}
+
+.windWrap .windFan {
+    animation: speed 600ms linear infinite;
+}
+
+@keyframes speed {
+    0% {
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+}
+
+.windWrap2{
+    top: 66%;
+    left: 92%;
+}
+
+#v7{
+    height: 43%;
+    width: 100%;
+}
+
+
+#v4{
+    height: 43%;
+    width: 100%;
+    z-index: 9;
+}
+
+.map{
+    height: 33%;
+    width: 100%;
+    left: 2%;
+    top: -9%;
+}
+
+#v1{
+    height: 55%;
+    width: 100%;
+    top: 1%;
+}
+
+#v8{
+    height: 43%;
+    width: 100%;
+}
+
+#v2 {
+    height: 27%;
+    width: 100%;
+    left: 0%;
+    top: 1%;
+}
+
+#v3 {
+    height: 27%;
+    width: 100%;
+    /* left: 60%; */
+    top: 2%;
+}
+
+#v5 {
+    position: relative;
+    height: 27%;
+    top: 1%;
+    width: 100%;
+}
+#v6 {
+    height: 27%;
+    width: 100%;
+    position: relative;
+    top: 2%;
+}
+
+.visual-one{
+    border: 2px double  rgba(16, 125, 145, 0.8);
+}
+
+.light-from{
+    display: inline;
+    /* width: 100%; */
+    height: 100%;
+    overflow: hidden;
+}
+.light {
+    position: absolute;
+    display: block;
+}
+
+.light:nth-child(1) {
+    /* filter: hue-rotate(0deg); */
+    top: 0;
+    left: 10%;
+    width: 10%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #97e7f1);
+    animation: animate1 8s linear infinite;
+    animation-delay: 2s;
+}
+
+@keyframes animate1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.light:nth-child(2) {
+    /* filter: hue-rotate(60deg); */
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 20%;
+    background: linear-gradient(180deg, transparent, #a6e9f1);
+    animation: animate2 8s linear infinite;
+    animation-delay: 4s;
+}
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.light:nth-child(3) {
+    /* filter: hue-rotate(120deg); */
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    height: 4px;
+    background: linear-gradient(270deg, transparent, #ade6ee);
+    animation: animate3 8s linear infinite;
+    animation-delay: 6s;
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+        height: 3px;
+    }
+
+    50%,
+    100% {
+        height: 2px;
+        right: 100%;
+    }
+}
+
+.light:nth-child(4) {
+    /* filter: hue-rotate(300deg); */
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 20%;
+    background: linear-gradient(360deg, transparent, #a9e1e9);
+    animation: animate4 8s linear infinite;
+    animation-delay: 8s;
+}
+
+@keyframes animate4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
